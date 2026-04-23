@@ -26,3 +26,9 @@ const userSchema = new mongoose.Schema({
     required: [true, "username is required"]
   },
 })
+
+
+const usermodel = mongoose.model("user", userSchema)
+
+
+module.exports = usermodel
