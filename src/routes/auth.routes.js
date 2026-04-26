@@ -8,7 +8,7 @@ const authRouter = Router()
 
 
 
-authRouter.post('/', userregistercontroller.userregistercontroller)
+authRouter.post('/register', userregistercontroller.userregistercontroller)
 
 
 module.exports = authRouter

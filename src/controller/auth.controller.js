@@ -29,9 +29,9 @@ async function userregistercontroller(req, res) {
       password
     })
 
-    const token =  jwt.sign({ id: newuser._id }, process.env.SECRET_KEY, { expiresIn: '2d'})
+    const token = jwt.sign({ id: newuser._id }, process.env.SECRET_KEY, { expiresIn: '2d' })
 
-    res.c
+    res.cookie('token', token,)
 
 
     return res.status(201).json({
@@ -47,9 +47,33 @@ async function userregistercontroller(req, res) {
 
 async function userlogincntroller(req, res) {
 
+  const { email, password } = req.body
+
+  try {
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "all fields are required"})
+    }
+
+    const user = await usermodel.findOne({ email })
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials"})
+    }
+
+
+
+
+  } catch (error) {
+    console.log(error)
+  }
+
+
+
 
 }
 
-module.exports = {
-  userregistercontroller
-}
+
+  module.exports = {
+    userregistercontroller
+  }

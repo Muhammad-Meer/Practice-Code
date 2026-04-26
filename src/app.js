@@ -9,7 +9,10 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/api/auth/', authRouter)
+app.use('/api/auth', authRouter)
+
+
+
 
 
 
