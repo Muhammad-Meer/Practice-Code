@@ -47,33 +47,48 @@ async function userregistercontroller(req, res) {
 
 async function userlogincntroller(req, res) {
 
-  const { email, password } = req.body
+  const { email, password } = req.body;  
 
   try {
 
     if (!email || !password) {
-      return res.status(400).json({ message: "all fields are required"})
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    const user = await usermodel.findOne({ email })
+    const user = await usermodel.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials"})
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
+    const ismatch = await bcrypt.compare(password, user.password);
 
+    if (!ismatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
 
+    // ✅ token generate
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.SECRET_KEY,
+      { expiresIn: '2d' }
+    );
+
+    res.cookie('token', token);
+
+    return res.status(200).json({
+      message: "Login successful",
+      user
+    });
 
   } catch (error) {
-    console.log(error)
+    return res.status(500).json({ message: error.message });
   }
-
-
-
 
 }
 
 
-  module.exports = {
-    userregistercontroller
-  }
+module.exports = {
+  userregistercontroller,
+  userlogincntroller,
+}
