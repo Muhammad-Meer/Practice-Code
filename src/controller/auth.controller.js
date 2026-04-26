@@ -29,7 +29,10 @@ async function userregistercontroller(req, res) {
       password
     })
 
-    const token =  j
+    const token =  jwt.sign({ id: newuser._id }, process.env.SECRET_KEY, { expiresIn: '2d'})
+
+    res.c
+
 
     return res.status(201).json({
       message: "User registered successfully",
@@ -39,6 +42,12 @@ async function userregistercontroller(req, res) {
   } catch (error) {
     return res.status(500).json({ message: error.message })
   }
+}
+
+
+async function userlogincntroller(req, res) {
+
+
 }
 
 module.exports = {
