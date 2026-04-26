@@ -20,13 +20,13 @@ async function userregistercontroller(req, res) {
       return res.status(400).json({ message: "User already exists" })
     }
 
-    const hash = await bcrypt.hash(password, 10)
+    const hashpassword= await bcrypt.hash(password, 10)
 
 
     const newuser = await usermodel.create({
       username,
       email,
-      password
+      password: hashpassword
     })
 
     const token = jwt.sign({ id: newuser._id }, process.env.SECRET_KEY, { expiresIn: '2d' })
@@ -58,13 +58,13 @@ async function userlogincntroller(req, res) {
     const user = await usermodel.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Invalid credentials user not found " });
     }
 
     const ismatch = await bcrypt.compare(password, user.password);
 
     if (!ismatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Invalid credentials password not match " });
     }
 
     // ✅ token generate
