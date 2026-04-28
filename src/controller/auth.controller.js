@@ -1,6 +1,7 @@
 const usermodel = require('../models/usermodel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const blacklistmodel = require('../models/blacklist.model');
 
 
 async function userregistercontroller(req, res) {
@@ -20,7 +21,7 @@ async function userregistercontroller(req, res) {
       return res.status(400).json({ message: "User already exists" })
     }
 
-    const hashpassword= await bcrypt.hash(password, 10)
+    const hashpassword = await bcrypt.hash(password, 10)
 
 
     const newuser = await usermodel.create({
@@ -47,7 +48,7 @@ async function userregistercontroller(req, res) {
 
 async function userlogincntroller(req, res) {
 
-  const { email, password } = req.body;  
+  const { email, password } = req.body;
 
   try {
 
@@ -88,6 +89,20 @@ async function userlogincntroller(req, res) {
 }
 
 async function userlogoutcontroller(req, res) {
+  const token = req.cookies.token;
+
+  try {
+    if (token) {
+      await blacklistmodel.create({ token });
+      res.clearCookie('token');
+
+      return res.status(200).json({ message: "Logout successful" });
+    }
+
+
+  } catch (error) {
+     
+  }
 
 }
 module.exports = {
