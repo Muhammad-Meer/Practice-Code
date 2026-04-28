@@ -108,13 +108,12 @@ async function userlogoutcontroller(req, res) {
 
 
 async function getmecontroller(req, res) {
-  const userI = await usermodel.findById(req.user.id)
+  const user = await usermodel.findById(req.user.id)
 
-  try {
-    
-  } catch (error) {
-    
-  }
+  return res.status(200).json({
+    message: "user found",
+    user
+  })
 
 }
 module.exports = {
