@@ -87,8 +87,11 @@ async function userlogincntroller(req, res) {
 
 }
 
+async function userlogoutcontroller(req, res) {
 
+}
 module.exports = {
   userregistercontroller,
   userlogincntroller,
+  userlogoutcontroller
 }
