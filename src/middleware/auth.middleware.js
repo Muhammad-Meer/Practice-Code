@@ -18,4 +18,6 @@ const authuser = (req, res, next) => {
 }
 
 
-module.exports = authuser;
+
+
+module.exports = {authuser};

@@ -101,7 +101,19 @@ async function userlogoutcontroller(req, res) {
 
 
   } catch (error) {
-     
+
+  }
+
+}
+
+
+async function getmecontroller(req, res) {
+  const userI = await usermodel.findById(req.user.id)
+
+  try {
+    
+  } catch (error) {
+    
   }
 
 }
