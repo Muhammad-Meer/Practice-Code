@@ -14,11 +14,11 @@ authRouter.post('/login', userregistercontroller.userlogincntroller)
 authRouter.post('/logout', userregistercontroller.userlogoutcontroller)
 
 
+// https://www.bsek.edu.pk/#/results
 
 
 
-
-authRouter.post('/get-me', authmiddleware.authuser)
+authRouter.post('/get-me', authmiddleware.authuser , userregistercontroller.getmecontroller)
 
 
 module.exports = authRouter

@@ -119,5 +119,6 @@ async function getmecontroller(req, res) {
 module.exports = {
   userregistercontroller,
   userlogincntroller,
-  userlogoutcontroller
+  userlogoutcontroller,
+  getmecontroller
 }
