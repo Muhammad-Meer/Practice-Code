@@ -18,7 +18,6 @@ authRouter.post('/logout', userregistercontroller.userlogoutcontroller)
 
 
 
-authRouter.post('/get-me', authmiddleware.authuser , userregistercontroller.getmecontroller)
 
 
 module.exports = authRouter
