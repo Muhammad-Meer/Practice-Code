@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './features/pages/Login';
+import Register from './features/pages/Register';
 
 export const Router = createBrowserRouter([
   { path: "/login", element: <Login /> },
