@@ -7,14 +7,27 @@ main {
   align-items: center;
 }
 
+.form-container{
+  min-width: 350px
+}
+
+
+form{
+  
+}
 
 .input-group {
   display: flex;
   flex-direction: column;
 
   gap: 0.75rem;
+}
 
+
+input {
   border: none;
   outline: none;
-
+  padding-inline: 1rem;
+  padding-block: 0.75rem;
+  border-radius: 0.75rem;
 }
