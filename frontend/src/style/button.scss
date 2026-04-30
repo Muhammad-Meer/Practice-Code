@@ -5,11 +5,15 @@
   padding-inline: 1rem;
   padding-block: 0.75rem;
   border-radius: 0.75rem;
+  transition: all 0.3s ease-in-out;
 
 
  &.button-primary{
   background-color: #e1034d;
   color: whitesmoke;
  }
+
+ &:active {
+  transform: scale(0.9);
  }
- 
+ }

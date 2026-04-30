@@ -1,6 +1,12 @@
 import React from 'react'
 import   "../auth/auth.form.scss"
 const Login = () => {
+
+
+
+  const handelSubmit = (e)  => {
+  e.preventDefault()
+  }
   return (
     <>
       <main>
@@ -8,7 +14,7 @@ const Login = () => {
 
           <h1>Login From</h1>
 
-          <form action="">
+          <form onSubmit={handelSubmit}>
 
             <div className='input-group'>
               <label htmlFor="email">Email</label>
