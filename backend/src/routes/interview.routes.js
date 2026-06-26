@@ -12,5 +12,21 @@ interviewrouter.post(
   interviewcontroller
 );
 
+interviewrouter.post(
+  "/interview",
+  upload.single("resume"),
+  authuser,
+  interviewcontroller
+);
+
+
+
+interviewrouter.post(
+  "/interview",
+  upload.single("resume"),
+  authuser,
+  interviewcontroller
+);
+
 
 module.exports = interviewrouter;
